@@ -28,7 +28,7 @@
   Clicking on the GitHub link will redirect the user to the official GitHub page  
 
   ### No MongoDB Integration
-  I decided not to use MongoDB for this assessment because GitHub's API provides more than enough search results for the search feature   to allow for most users to find what they need.  
+  I decided not to use MongoDB for this project because GitHub's API provides more than enough search results for the search feature   to allow for most users to find what they need.  
   The rate limit of 60 requests per hour is more than enough for anyone who is not testing/debugging the webpage (I only managed to hit this rate limit once during my testing period which I did in order to handle the GIT hub rate limit error)  
   
 
