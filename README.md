@@ -41,7 +41,7 @@
 
   #### Pagination  
   The GitHub search api provides pagination in the request URL  
-    https://api.github.com/search/users?q=+in:login+location:bangalore&per_page=100&page=1
+    https://api.github.com/search/users?q=+in:login+location:bangalore&per_page=100&page=1  
     The per_page parameter specifies the number of items per per_page  
     The page parameter specifies the page number
 
