@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+  <head >
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+
+  <body class = "" ng-app="angularApp">
+    <header>
+      <center>
+        <h1>Github User Search</h1>
+      </center>
+    </header>
+    <div class = "container"  ng-controller="HttpPostController as app">
+      <div class =  "row">
+        <input class = "form-control col-10" type = "text" ng-model="searchTerm" placeholder="search">
+        <button class = "btn col-1"ng-click="SendData(1)">Search</button>
+
+        <select class = "custom-select col-1" aria-labelledby="dropdownMenuButton" ng-Model="num_per_page">
+          <option ng-repeat="x in vals" value = "{{x}}">{{x}}</option>
+        </select>
+
+      </div>
+      <div ng-repeat = "data in PostDataResponse.items">
+        <center>
+          <div class = "details">
+            <img ng-src = {{data.avatar_url}} alt="profile_image">
+            <div class= "userinfo">
+              <h2>{{data.login}}</h2>
+              <a ng-href={{data.html_url}}>{{data.html_url}}</a>
+            </div>
+          </div>
+        </center>
+      </div>
+      <div ng-if="showPagination==false">
+        <p>No Search Results Found</p>
+      </div>
+      <div ng-if="showPagination==true">
+        <button ng-if="PostDataResponse.first!=null"ng-click="SendData(1)"><<</button>
+        <button ng-if="PostDataResponse.prev!=null" ng-click="SendData(PostDataResponse.prev.page)">{{PostDataResponse.prev.page}}</button>
+        <button ng-click="SendData(currPage)"><strong>{{currPage}}</strong></button>
+        <button ng-if="PostDataResponse.next!=null" ng-click="SendData(PostDataResponse.next.page)">{{PostDataResponse.next.page}}</button>
+        <button ng-if="PostDataResponse.last!=null" ng-click="SendData(PostDataResponse.last.page)">>></button>
+      </div>
+    </div>
+    <script type="text/javascript" src="./javascripts/search.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
