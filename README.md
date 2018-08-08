@@ -21,6 +21,6 @@
   ```
   
   ### Usage
-  In the browser go to the URL http://localhost:3000/
+  In the browser go to the URL http://localhost:3000/  
   the '/' route handles all the requests, no other routes are supported
   
