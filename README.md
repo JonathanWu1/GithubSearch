@@ -21,8 +21,11 @@
   ```
 
   ### Usage
-  In the browser go to the URL [http://localhost:3000/](http://localhost:3000)
+  In the browser go to the URL [http://localhost:3000/](http://localhost:3000)  
   the '/' route handles all the requests, no other routes are supported  
+  The dropdown allows the user to control the number of search results shown per page  
+  Clicking anywhere around the profile image or the profile name will show more details about the user on the right  
+  Clicking on the GitHub link will redirect the user to the official GitHub page  
 
 
   ### GitHub search API  

@@ -13,6 +13,7 @@ router.get('/',(req, res, next)=>{
   res.setHeader('Content-Type', 'text/html');
   res.sendFile(path.join(__dirname, '/../public/githubsearch.html'));
 })
+
 router.post('/',(req,res,next)=>{
   got('https://api.github.com/search/users?q='+req.body.name+'+in:login+location:bangalore&per_page='+req.body.num_per_page+'&page='+req.body.page)
   .then((response) => {
@@ -37,10 +38,12 @@ router.post('/',(req,res,next)=>{
   });
 });
 router.get('/:username',(req,res,next)=>{
+  console.log(req.params.username);
   got('https://api.github.com/users/'+req.params.username)
     .then((response) => {
     var items = response.body;
     if(items!=null){
+
       data=JSON.parse(items);
       res.statusCode=200;
       res.setHeader('Content-Type', 'application/json');
@@ -52,7 +55,9 @@ router.get('/:username',(req,res,next)=>{
       res.end("No User Found");
     }
   }).catch((error) => {
-    console.log(error);
+      res.statusCode=error.statusCode;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end("GitHub api rate limit exceeded");   
   });
 });
 module.exports = router;

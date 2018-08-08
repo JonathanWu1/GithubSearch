@@ -25,11 +25,11 @@
       </div>
       <div class = "container" id = "info">
         <div class = "row">
-          <div class = "col-5">
+          <div class = "col-5" id = "searchResults">
             <div  ng-repeat = "data in PostDataResponse.items">
                 <div class = "row" id="details" ng-click="getUserData(data.login)">
-                  <img class="col-6" id = "searchImage" ng-src = {{data.avatar_url}} alt="profile_image">
-                  <div class= "userinfo col-6" style="padding:0px 0px; margin:15px;">
+                  <img class="col-5" id = "searchImage" ng-src = {{data.avatar_url}} alt="profile_image">
+                  <div class= "userinfo col-7" style="padding:0px 0px; margin:15px;">
                     <h2>{{data.login}}</h2>
                     <a ng-href={{data.html_url}}>{{data.html_url}}</a>
                   </div>
@@ -37,8 +37,8 @@
                 <hr>
             </div>
           </div>
-          <div ng-if="showDetails==true" class = "col-6 offset-1" id = "userdetails">
-            <div class = "card" id = "userdetailcard">
+          <div ng-if="showDetails==true" class = "col-6" id = "userdetails">
+            <div id = "userdetailcard">
               <center>
                 <img ng-src ="{{userdetails.avatar_url}}" id="userdetailimage"></img>
                 <h2><b>Name:</b></br>{{userdetails.name}}</h2>
@@ -53,10 +53,10 @@
         </div>
       </div>
       <div class = "pagination">
-          <div ng-if="showPagination==false">
+          <div ng-if="noSearchResults">
             <p>No Search Results Found</p>
           </div>
-          <div ng-if="showPagination==true">
+          <div ng-if="showPagination">
               <button type = "button" class = "btn" ng-if="PostDataResponse.first!=null"ng-click="SendData(1)"><<</button>
               <button type = "button" class = "btn" ng-if="PostDataResponse.prev!=null" ng-click="SendData(PostDataResponse.prev.page)">{{PostDataResponse.prev.page}}</button>
               <button type = "button" class = "btn"><strong>{{currPage}}</strong></button>
