@@ -1,26 +1,33 @@
 var app = angular.module('angularApp',[]);
 
 app.controller('HttpPostController', function($scope,$http) {
-  $scope.vals = [1,2,3,4,5,6,7,8,9,10];
+  $scope.vals = [5,10,20,50,100];
+  $scope.getUserData = function(username){
+    $http.get('/'+username)
+    .then((data)=>{
+      $scope.userdetails=data.data;
+      $scope.showDetails= true;
+    })
+    .catch((response)=>{
+      console.log(response);
+    });
+  }
   $scope.SendData = function(page,num_per_page){
-    console.log($scope.num_per_page);
-    if($scope.searchTerm!=null){
-      var data = {
-        name:$scope.searchTerm,
-        page:page,
-        num_per_page: $scope.num_per_page
-      };
+    if($scope.searchTerm == null){
+      $scope.searchTerm = '';
     }
-    else{
-      var data = {
-        name:'',
-        page:page,
-        num_per_page: $scope.num_per_page
-      };
+    if($scope.num_per_page == null || $scope.num_per_page==''){
+      $scope.num_per_page = 4;
     }
+    var data = {
+      name:$scope.searchTerm,
+      page:page,
+      num_per_page: $scope.num_per_page
+    };
     $http.post('/', data)
     .then((data)=>{
       $scope.PostDataResponse = data.data;
+      $scope.showDetails= false;
       if($scope.PostDataResponse.total_count == 0){
         $scope.showPagination=false;
       }
@@ -39,7 +46,7 @@ app.controller('HttpPostController', function($scope,$http) {
     })
     .catch((response)=>{
       console.log(response);
-    })
+    });
 
   };
 });

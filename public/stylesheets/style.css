@@ -1,8 +1,49 @@
 body {
-  padding: 50px;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+a{
+  color: black !important;
+  text-decoration: none !important;
+}
 
-a {
-  color: #00B7FF;
+#details{
+  padding:10px;
+  margin:10px auto;
+  word-wrap: break-word;
+}
+#userdetailimage{
+  max-width:500px;
+  max-height:500px;
+}
+#userdetailcard{
+  padding: 10px 10px;
+}
+.searchResults{
+}
+.userinfo{
+  padding:10px 20px;
+}
+#searchImage{
+  max-height:150px;
+  max-width:150px;
+  padding:0px 0px;
+}
+.profile{
+  text-align: center;
+}
+.searchOptions{
+  margin-top:10px;
+  margin-bottom: 10px;
+}
+#userdetails{
+  padding-right:0px;
+}
+#info{
+  padding:0px;
+}
+.pagination{
+  width:30%;
+  margin-left:auto;
+  margin-right:auto;
 }

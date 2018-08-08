@@ -2,6 +2,7 @@
 
 <html>
   <head >
+    <link rel="stylesheet" href="./stylesheets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
@@ -9,39 +10,59 @@
   <body class = "" ng-app="angularApp">
     <header>
       <center>
-        <h1>Github User Search</h1>
+        <a href="/"><h1>Github User Search</h1></a>
       </center>
     </header>
     <div class = "container"  ng-controller="HttpPostController as app">
-      <div class =  "row">
-        <input class = "form-control col-10" type = "text" ng-model="searchTerm" placeholder="search">
-        <button class = "btn col-1"ng-click="SendData(1)">Search</button>
-
-        <select class = "custom-select col-1" aria-labelledby="dropdownMenuButton" ng-Model="num_per_page">
+      <div class = "row">
+        <input class = "form-control col-12" type = "text" ng-model="searchTerm" placeholder="search">
+      </div>
+      <div class = "row  searchOptions">
+        <button class = "btn col-1 mr-1 offset-5"ng-click="SendData(1)">Search</button>
+        <select class = "custom-select col-1" aria-labelledby="dropdownMenuButton" ng-Model="num_per_page" id = "numPerPageSelect">
           <option ng-repeat="x in vals" value = "{{x}}">{{x}}</option>
         </select>
-
       </div>
-      <div ng-repeat = "data in PostDataResponse.items">
-        <center>
-          <div class = "details">
-            <img ng-src = {{data.avatar_url}} alt="profile_image">
-            <div class= "userinfo">
-              <h2>{{data.login}}</h2>
-              <a ng-href={{data.html_url}}>{{data.html_url}}</a>
+      <div class = "container" id = "info">
+        <div class = "row">
+          <div class = "col-5">
+            <div  ng-repeat = "data in PostDataResponse.items">
+                <div class = "row" id="details" ng-click="getUserData(data.login)">
+                  <img class="col-6" id = "searchImage" ng-src = {{data.avatar_url}} alt="profile_image">
+                  <div class= "userinfo col-6" style="padding:0px 0px; margin:15px;">
+                    <h2>{{data.login}}</h2>
+                    <a ng-href={{data.html_url}}>{{data.html_url}}</a>
+                  </div>
+                </div>
+                <hr>
             </div>
           </div>
-        </center>
+          <div ng-if="showDetails==true" class = "col-6 offset-1" id = "userdetails">
+            <div class = "card" id = "userdetailcard">
+              <center>
+                <img ng-src ="{{userdetails.avatar_url}}" id="userdetailimage"></img>
+                <h2><b>Name:</b></br>{{userdetails.name}}</h2>
+                <p ng-if="userdetails.login!=''"><b>Login:</b></br>{{userdetails.login}}</p>
+                <p ng-if="userdetails.bio!=''"><b>Description:</b></b></br>{{userdetails.bio}}</p>
+                <p ng-if="userdetails.company!=''"><b>Company:</b></br>{{userdetails.company}}</p>
+                <p ng-if="userdetails.blog!=''"><b>Blog:</b></br>{{userdetails.blog}}</p>
+                <p ng-if="userdetails.public_repos!=''"><b>Repositories:</b></br>{{userdetails.public_repos}}</p>
+              </center>
+            </div>
+          </div>
+        </div>
       </div>
-      <div ng-if="showPagination==false">
-        <p>No Search Results Found</p>
-      </div>
-      <div ng-if="showPagination==true">
-        <button ng-if="PostDataResponse.first!=null"ng-click="SendData(1)"><<</button>
-        <button ng-if="PostDataResponse.prev!=null" ng-click="SendData(PostDataResponse.prev.page)">{{PostDataResponse.prev.page}}</button>
-        <button ng-click="SendData(currPage)"><strong>{{currPage}}</strong></button>
-        <button ng-if="PostDataResponse.next!=null" ng-click="SendData(PostDataResponse.next.page)">{{PostDataResponse.next.page}}</button>
-        <button ng-if="PostDataResponse.last!=null" ng-click="SendData(PostDataResponse.last.page)">>></button>
+      <div class = "pagination">
+          <div ng-if="showPagination==false">
+            <p>No Search Results Found</p>
+          </div>
+          <div ng-if="showPagination==true">
+              <button type = "button" class = "btn" ng-if="PostDataResponse.first!=null"ng-click="SendData(1)"><<</button>
+              <button type = "button" class = "btn" ng-if="PostDataResponse.prev!=null" ng-click="SendData(PostDataResponse.prev.page)">{{PostDataResponse.prev.page}}</button>
+              <button type = "button" class = "btn"><strong>{{currPage}}</strong></button>
+              <button type = "button" class = "btn" ng-if="PostDataResponse.next!=null" ng-click="SendData(PostDataResponse.next.page)">{{PostDataResponse.next.page}}</button>
+              <button type = "button" class = "btn" ng-if="PostDataResponse.last!=null" ng-click="SendData(PostDataResponse.last.page)">>></button>
+          </div>
       </div>
     </div>
     <script type="text/javascript" src="./javascripts/search.js"></script>

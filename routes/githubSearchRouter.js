@@ -14,7 +14,6 @@ router.get('/',(req, res, next)=>{
   res.sendFile(path.join(__dirname, '/../public/githubsearch.html'));
 })
 router.post('/',(req,res,next)=>{
-  console.log('https://api.github.com/search/users?q='+req.body.name+'+in:login+location:bangalore&per_page='+req.body.num_per_page+'&page='+req.body.page);
   got('https://api.github.com/search/users?q='+req.body.name+'+in:login+location:bangalore&per_page='+req.body.num_per_page+'&page='+req.body.page)
   .then((response) => {
     var items = response.body;
@@ -33,6 +32,25 @@ router.post('/',(req,res,next)=>{
     res.statusCode=200;
     res.setHeader('Content-Type', 'application/json');
     res.json(data);
+  }).catch((error) => {
+    console.log(error);
+  });
+});
+router.get('/:username',(req,res,next)=>{
+  got('https://api.github.com/users/'+req.params.username)
+    .then((response) => {
+    var items = response.body;
+    if(items!=null){
+      data=JSON.parse(items);
+      res.statusCode=200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json(data);
+    }
+    else{
+      res.statusCode=200;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end("No User Found");
+    }
   }).catch((error) => {
     console.log(error);
   });
