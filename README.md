@@ -1,6 +1,6 @@
 # GithubSearch
 
-  A basic webpage built using the MEAN stack to search for GitHub users in Bangalore  
+  A basic webpage built using the EAN (the missing M is explained later) stack to search for GitHub users in Bangalore  
   Made as a technical assessment for Percept Labs Private Limited  
 
 ## Installation:  
@@ -30,7 +30,7 @@
   ### No MongoDB Integration
   I decided not to use MongoDB for this project because GitHub's API provides more than enough search results for the search feature   to allow for most users to find what they need.  
   The rate limit of 60 requests per hour is more than enough for anyone who is not testing/debugging the webpage (I only managed to hit this rate limit once during my testing period which I did in order to handle the GIT hub rate limit error)  
-  
+  MongoDB could be used on the server side to store the GitHub user data locally and send multiple smaller requests to the GitHub API in order to collect all the user data. This will allow the webpage to user to obtain more than 1000 results per query, but the database will occasionally have to be updated and has the potential to show outdated data in between the update cycles.
 
   ### GitHub search API  
 
