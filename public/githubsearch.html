@@ -23,6 +23,7 @@
           <option ng-repeat="x in vals" value = "{{x}}">{{x}}</option>
         </select>
       </div>
+      <hr>
       <div class = "container" id = "info">
         <div class = "row">
           <div class = "col-5" id = "searchResults">
@@ -50,12 +51,13 @@
               </center>
             </div>
           </div>
-        </div>
-      </div>
-      <div class = "pagination">
           <div ng-if="noSearchResults">
             <p>No Search Results Found</p>
           </div>
+        </div>
+      </div>
+      <div class = "pagination">
+
           <div ng-if="showPagination">
               <button type = "button" class = "btn" ng-if="PostDataResponse.first!=null"ng-click="SendData(1)"><<</button>
               <button type = "button" class = "btn" ng-if="PostDataResponse.prev!=null" ng-click="SendData(PostDataResponse.prev.page)">{{PostDataResponse.prev.page}}</button>
