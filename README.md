@@ -3,7 +3,7 @@
   A basic webpage built using the MEAN stack to search for GitHub users in Bangalore  
   Made as a technical assesment for Percept Labs Private Limited  
   
-##Installation:  
+## Installation:  
   
   Download [Node.Js version 8.11.3 LTS](https://nodejs.org/en/)  
   
@@ -12,10 +12,15 @@
   git clone https://github.com/JonathanWu1/GithubSearch.git
   ```
   
-  ###Windows:  
+  ### Windows:  
   In the command prompt type:  
   ```
   cd /path/to/the/folder
   npm install
   npm start
   ```
+  
+  ### Usage
+  In the browser go to the URL http://localhost:3000/
+  the '/' route handles all the requests, no other routes are supported
+  
