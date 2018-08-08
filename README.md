@@ -27,6 +27,10 @@
   Clicking anywhere around the profile image or the profile name will show more details about the user on the right  
   Clicking on the GitHub link will redirect the user to the official GitHub page  
 
+  ### No MongoDB Integration
+  I decided not to use MongoDB for this assessment because GitHub's API provides more than enough search results for the search feature   to allow for most users to find what they need.  
+  The rate limit of 60 requests per hour is more than enough for anyone who is not testing/debugging the webpage (I only managed to hit this rate limit once during my testing period which I did in order to handle the GIT hub rate limit error)  
+  
 
   ### GitHub search API  
 
@@ -51,3 +55,5 @@
   #### User details
   The GET /search/users route does not return all of the information related to the users  
   In order to get all the user data provided by GitHub you need to use the GET /users/username route
+
+  
