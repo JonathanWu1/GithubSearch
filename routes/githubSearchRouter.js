@@ -38,7 +38,6 @@ router.post('/',(req,res,next)=>{
   });
 });
 router.get('/:username',(req,res,next)=>{
-  console.log(req.params.username);
   got('https://api.github.com/users/'+req.params.username)
     .then((response) => {
     var items = response.body;
@@ -57,7 +56,7 @@ router.get('/:username',(req,res,next)=>{
   }).catch((error) => {
       res.statusCode=error.statusCode;
       res.setHeader('Content-Type', 'text/plain');
-      res.end("GitHub api rate limit exceeded");   
+      res.end("GitHub api rate limit exceeded");
   });
 });
 module.exports = router;
